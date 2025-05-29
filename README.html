@@ -1,0 +1,797 @@
+# Mente-em-foco-final
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mente em Foco - Seu Guia para o Bem-Estar Mental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Para rolagem suave ao clicar nos links internos */
+        }
+        .hero-bg {
+            background-image: url('https://image.cookierecipes.com/LLM_Images/gemini_images/Saude_Mental_Hero_v1.jpeg'); 
+            background-size: cover;
+            background-position: center;
+        }
+        .menu-toggle {
+            display: none; 
+        }
+        @media (max-width: 768px) { /* Tailwind's md breakpoint */
+            .menu-toggle {
+                display: block; 
+            }
+        }
+        .disclaimer-box { 
+            border-left: 5px solid #f59e0b; /* Tailwind amber-500 */
+            background-color: #fffbeb; /* Tailwind amber-50 */
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .medication-card {
+            background-color: #fff;
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .medication-card h5 { 
+            color: #166534; 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            margin-bottom: 0.5rem; 
+        }
+        .medication-card strong {
+            color: #374151; 
+        }
+        .medication-card .details p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-green-700">Mente em Foco</a>
+            <div class="md:hidden">
+                <button id="menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav id="nav-links" class="hidden md:flex space-x-1 lg:space-x-2 items-center nav-links">
+                <a href="#o-que-e" class="text-gray-600 hover:text-green-600 transition duration-300 px-2 py-1 rounded-md">O que é?</a>
+                <a href="#transtornos" class="text-gray-600 hover:text-green-600 transition duration-300 px-2 py-1 rounded-md">Transtornos</a>
+                <a href="#autocuidado" class="text-gray-600 hover:text-green-600 transition duration-300 px-2 py-1 rounded-md">Autocuidado</a>
+                <a href="#medicamentos" id="medications-link-nav" class="text-gray-600 hover:text-green-600 transition duration-300 px-2 py-1 rounded-md">Medicamentos</a> 
+                <a href="#ajuda" class="text-gray-600 hover:text-green-600 transition duration-300 px-2 py-1 rounded-md">Buscar Ajuda</a>
+                <a href="#recursos" class="text-gray-600 hover:text-green-600 transition duration-300 px-2 py-1 rounded-md">Recursos</a>
+                <a href="#contato" class="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition duration-300">Contato</a>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#o-que-e" class="block px-6 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 transition duration-300">O que é Saúde Mental?</a>
+            <a href="#transtornos" class="block px-6 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 transition duration-300">Transtornos Comuns</a>
+            <a href="#autocuidado" class="block px-6 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 transition duration-300">Autocuidado</a>
+            <a href="#medicamentos" id="medications-link-mobile" class="block px-6 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 transition duration-300">Medicamentos</a>
+            <a href="#ajuda" class="block px-6 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 transition duration-300">Buscar Ajuda</a>
+            <a href="#recursos" class="block px-6 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 transition duration-300">Recursos de Apoio</a>
+            <a href="#contato" class="block px-6 py-3 bg-green-600 text-white text-center rounded-b-lg hover:bg-green-700 transition duration-300">Contato</a>
+        </div>
+    </header>
+
+    <section class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center bg-black bg-opacity-50 p-8 rounded-lg">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Bem-vindo ao Mente em Foco</h1>
+            <p class="text-lg md:text-2xl mb-8">Cuidando da sua mente, transformando sua vida. Encontre informação, apoio e caminhos para o seu bem-estar emocional.</p>
+            <a href="#o-que-e" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">Comece por Aqui</a>
+        </div>
+    </section>
+
+    <section id="o-que-e" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-2 text-green-700">O que é Saúde Mental?</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Saúde mental é mais do que a ausência de transtornos mentais. É um estado de bem-estar que permite às pessoas realizar seu potencial, lidar com o estresse normal da vida, trabalhar de forma produtiva e contribuir para suas comunidades.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Importância</h3>
+                    <p class="text-gray-700">Afeta como pensamos, sentimos e agimos. Determina como lidamos com o estresse, nos relacionamos com os outros e fazemos escolhas saudáveis para uma vida plena.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Sinais de Bem-Estar</h3>
+                    <p class="text-gray-700">Sentir-se bem consigo mesmo e com os outros, ter relacionamentos positivos, conseguir lidar com emoções e desafios do dia a dia com resiliência.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Foco na Prevenção</h3>
+                    <p class="text-gray-700">Adotar hábitos saudáveis e buscar conhecimento sobre saúde mental são passos fundamentais para prevenir transtornos e promover uma vida equilibrada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="autocuidado" class="py-16 bg-green-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-700">Cultivando o Bem-Estar: Autocuidado e Estratégias</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Pequenas mudanças e práticas diárias podem fazer uma grande diferença na sua saúde mental. Explore algumas estratégias não medicamentosas para fortalecer seu equilíbrio emocional:</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://placehold.co/100x100/a3b18a/FFFFFF?text=Exercício" alt="Ícone de exercício físico" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Atividade Física</h3>
+                    <p class="text-gray-700">Libera endorfinas, melhora o humor e reduz o estresse.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://placehold.co/100x100/a3b18a/FFFFFF?text=Sono" alt="Ícone de sono reparador" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Sono Reparador</h3>
+                    <p class="text-gray-700">Essencial para a recuperação física e mental.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://placehold.co/100x100/a3b18a/FFFFFF?text=Mindfulness" alt="Ícone de meditação e mindfulness" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Mindfulness e Meditação</h3>
+                    <p class="text-gray-700">Acalma a mente e aumenta a consciência do presente.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <img src="https://placehold.co/100x100/a3b18a/FFFFFF?text=Conexões" alt="Ícone de conexões sociais" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Conexões Significativas</h3>
+                    <p class="text-gray-700">Fortaleça laços com amigos, família e comunidade.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300 md:col-span-2 lg:col-span-2">
+                     <img src="https://placehold.co/100x100/a3b18a/FFFFFF?text=Hobbies" alt="Ícone de hobbies e lazer" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Hobbies e Lazer</h3>
+                    <p class="text-gray-700">Dedique tempo a atividades que lhe tragam prazer e relaxamento.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300 md:col-span-2 lg:col-span-2">
+                     <img src="https://placehold.co/100x100/a3b18a/FFFFFF?text=Terapia" alt="Ícone de terapia e aconselhamento" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Psicoterapia</h3>
+                    <p class="text-gray-700">Um espaço seguro para explorar emoções e desenvolver estratégias com um profissional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="transtornos" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-700">Entendendo os Desafios: Transtornos Comuns</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Conhecer os sinais de alguns transtornos mentais comuns pode ajudar a identificar quando você ou alguém próximo pode precisar de apoio especializado. Lembre-se, informação é o primeiro passo.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Ansiedade</h3>
+                    <p class="text-gray-700 mb-4">Preocupação intensa, excessiva e persistente e medo sobre situações cotidianas. Pode incluir ataques de pânico.</p>
+                    <a href="#transtornos" class="text-green-600 hover:text-green-700 font-semibold">Saiba Mais &rarr;</a> 
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Depressão</h3>
+                    <p class="text-gray-700 mb-4">Transtorno de humor que causa um sentimento persistente de tristeza e perda de interesse, afetando o dia a dia.</p>
+                    <a href="#transtornos" class="text-green-600 hover:text-green-700 font-semibold">Saiba Mais &rarr;</a> 
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Burnout</h3>
+                    <p class="text-gray-700 mb-4">Estado de exaustão física e emocional resultante de estresse crônico, geralmente ligado ao trabalho.</p>
+                    <a href="#transtornos" class="text-green-600 hover:text-green-700 font-semibold">Saiba Mais &rarr;</a> 
+                </div>
+            </div>
+            <p class="text-center mt-8 text-sm text-gray-600"><strong>Importante:</strong> O conteúdo deste site é informativo e não substitui o diagnóstico ou tratamento profissional.</p>
+        </div>
+    </section>
+
+    <section id="medicamentos" class="py-16 bg-gray-100"> 
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-6 text-green-700">Medicamentos em Saúde Mental</h2>
+
+            <div class="disclaimer-box text-amber-700">
+                <h3 class="font-bold text-xl mb-2">ATENÇÃO! INFORMAÇÃO IMPORTANTE:</h3>
+                <p class="mb-2">As informações fornecidas abaixo sobre medicamentos são exclusivamente para fins <strong>EDUCACIONAIS</strong> e <strong>INFORMATIVOS</strong>. Elas <strong>NÃO substituem</strong>, de forma alguma, a consulta, o diagnóstico, a prescrição ou o acompanhamento por um profissional de saúde qualificado (médico psiquiatra ou outro especialista).</p>
+                <p class="mb-2"><strong>NUNCA se automedique.</strong> A automedicação pode ser extremamente perigosa, mascarar sintomas, agravar condições existentes, causar efeitos colaterais graves ou interações medicamentosas prejudiciais.</p>
+                <p class="mb-2">O uso de qualquer medicamento psicotrópico deve ser feito <strong>SOMENTE</strong> sob prescrição e supervisão médica rigorosa. O médico é o único profissional capaz de avaliar sua condição individual, determinar a necessidade de medicação, escolher o fármaco mais adequado, definir a dosagem correta e monitorar sua resposta ao tratamento e possíveis efeitos adversos.</p>
+                <p>Converse sempre com seu médico sobre quaisquer dúvidas ou preocupações relacionadas a medicamentos.</p>
+            </div>
+
+            <p class="text-gray-700 mb-10 text-lg max-w-3xl mx-auto text-center">O tratamento medicamentoso pode ser uma ferramenta valiosa no cuidado da saúde mental, frequentemente utilizado em conjunto com psicoterapia e outras intervenções. A decisão de usar medicação é complexa e individualizada, feita em colaboração entre paciente e médico.</p>
+
+            <div class="space-y-12">
+                <article>
+                    <h3 class="text-3xl font-semibold mb-6 text-green-800 border-b-2 border-green-300 pb-3">Antidepressivos</h3>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-4">Tricíclicos (ADTs)</h4>
+                        <div class="medication-card">
+                            <h5>Imipramina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Tofranil, Depramina, Mepramin</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Liga-se ao transportador de serotonina e norepinefrina, reduzindo a recaptação de norepinefrina e serotonina pelos neurônios.</p>
+                                <p><strong>Meia-Vida:</strong> 9-25 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, síndrome do pânico, enurese noturna.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão: 25-200 mg/dia (50-100 mg/dia usualmente). Pânico: 10-150 mg/dia (75-150 mg/dia usualmente). Enurese noturna: 1.7 mg/kg.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Ganho de peso, tremor, taquicardia, disfunção sexual, anormalidades eletrocardiográficas, hipotensão ortostática, boca seca, constipação, hiperidrose.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Amitriptilina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Tryptanol, Amytril, Protan, Trypsol, Tesomati</p>
+                             <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição da recaptação da serotonina, potencializando e prolongando sua atividade neural. Afinidade com receptores de histamina H1 e muscarínicos.</p>
+                                <p><strong>Meia-Vida:</strong> Variavel, tipicamente 10-50 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão e enurese noturna.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Ambulatorial: 50-150 mg/dia VO. Hospitalar: 100-300 mg/dia VO. Adolescentes/Idosos: 30-50 mg/dia VO. Dose usual: 75-150 mg/dia VO; Dose máxima: 300 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Ganho de peso, constipação, xerostomia, tontura, dor de cabeça, sonolência, visão turva.</p>
+                            </div>
+                        </div>
+                         <div class="medication-card">
+                            <h5>Nortriptilina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Pamelor</p>
+                             <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Impede a recaptação neuronal de noradrenalina (NA) e em menor grau de serotonina (5-HT) na fenda sináptica. Apresenta atividade H1-adrenérgica, anticolinérgica, anti-histamínica e antiserotoninérgica.</p>
+                                <p><strong>Meia-Vida:</strong> 18-44 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 25-150 mg/dia, ajustada pelo médico.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Semelhantes a outros ADTs, incluindo boca seca, constipação, sonolência, visão turva. Jovens com depressão podem apresentar agravamento do quadro com ideação suicida.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Clomipramina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Anafranil</p>
+                             <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Potente inibidor da recaptação da serotonina e, em menor grau, da norepinefrina.</p>
+                                <p><strong>Meia-Vida:</strong> 20-40 horas (pode ser mais longa com metabólito ativo).</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, transtorno obsessivo-compulsivo (TOC), fobias, transtorno do pânico, ejaculação precoce, condições dolorosas crônicas, cataplexia associada à narcolepsia. Enurese noturna em crianças e adolescentes.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Variável conforme a indicação (ex: TOC 25-250 mg/dia; Depressão 25-150 mg/dia), ajustada pelo médico.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Apatia, xerostomia, tontura, constipação, visão turva, palpitações, coordenação prejudicada, aumento do apetite/peso, náuseas/vômitos, diaforese, fraqueza, confusão, insônia, ansiedade/agitação, retenção urinária, erupção cutânea, prurido, alterações da libido, impotência, ginecomastia, galactorreia, tremor, hipo/hiperglicemia, parestesia e fotossensibilidade.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-4">Inibidores Seletivos da Recaptação de Serotonina (ISRS)</h4>
+                        <div class="medication-card">
+                            <h5>Fluoxetina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Prozac, Daforin, Eufor, Fluxene, Verotina, Depress, Nortec, Psipax</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição seletiva da recaptação da serotonina pelo bloqueio do SERT. Ações antagonistas nos receptores 5HT2C.</p>
+                                <p><strong>Meia-Vida:</strong> Fluoxetina: 1-3 dias (aguda), 4-6 dias (crônica). Metabólito (norfluoxetina): 4-16 dias.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, bulimia nervosa, TOC, transtorno disfórico pré-menstrual (TDPM), transtorno do pânico.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão/TOC: 20-60 mg/dia. Bulimia: 60 mg/dia. TDPM: 20 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Ansiedade, insônia, nervosismo, sonolência, fadiga, tremor, sudorese, náusea, diarreia, boca seca, diminuição do apetite, disfunção sexual.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Sertralina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Zoloft, Assert, Cefelic, Dieloft, Sercerin, Serenata, Tolrest, Zysertin, Novativ, Sertralin</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição seletiva da recaptação de serotonina (5HT) por bloqueio dos receptores 5HT-2. Baixa afinidade por outros receptores.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 26 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, TOC, transtorno do pânico, TEPT, fobia social, transtorno disfórico pré-menstrual.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão/TOC: 50-200 mg/dia. Transtorno do pânico, TEPT, fobia social: 25-200 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Insônia, tontura, sonolência, náuseas, diarreia, boca seca, fadiga, sudorese, disfunção sexual (especialmente ejaculatória).</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Paroxetina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Aropax, Pondera, Cebrilin, Paxil CR, Benepax, Roxetin</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição seletiva da recaptação de serotonina (5HT).</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 21 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, TAG, Fobia social, Transtorno do pânico, TOC, TEPT, TDPM.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão, TAG, Fobia social, TEPT: 20-50 mg/dia. Transtorno do pânico: 10-60 mg/dia. TOC: 20-60 mg/dia. TDPM: 12.5-25 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, insônia, tontura, tremor, náusea, boca seca, constipação, diarreia, sudorese, astenia, disfunção sexual. Risco de síndrome de descontinuação.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Citalopram</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Cipramil, Denyl, Maxapran, Procimax, Alcytam</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição seletiva da recaptação de serotonina. Mínima ou nenhuma afinidade por receptores de norepinefrina, dopamina, GABA.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 35 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, Transtorno do Pânico, Agorafobia, TOC.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão/TOC: Iniciar com 20 mg/dia, pode aumentar até máx. de 40 mg/dia. Transtorno do Pânico: Iniciar com 10 mg/dia na primeira semana, depois 20-30 mg/dia (máx. 40 mg/dia).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, insônia, tontura, cefaleia (dependente da dose), diaforese, prurido, xerostomia, constipação, diarreia, dispepsia, distúrbio de ejaculação (dependente da dose).</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Escitalopram</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Lexapro, Espran, Exodus, Reconter, Sedopan, Escilex</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibidor seletivo da recaptação de serotonina (isômero S do citalopram). Potencializa a atividade serotoninérgica no SNC.</p>
+                                <p><strong>Meia-Vida:</strong> 27-32 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, Transtorno do pânico, Transtorno de ansiedade generalizada (TAG), Transtorno de ansiedade social (fobia social), Transtorno obsessivo-compulsivo (TOC).</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Dose usual: 10 mg/dia. Iniciar com 5-10 mg/dia, aumentando até 20 mg/dia conforme necessidade (em 2-4 semanas).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Náusea, dor de cabeça, insônia, sonolência, diminuição do apetite, cansaço, sudorese, desordem ejaculatória.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Fluvoxamina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Luvox, Revoc</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição seletiva da recaptação de serotonina na fenda pré-sináptica, aumentando a atividade serotoninérgica.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 15 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão maior, TOC.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> TOC: 50-300 mg/dia. Depressão: 100-200 mg/dia. Recomenda-se aumentar a dose gradualmente.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Cefaleia, insônia, tontura, ansiedade, náuseas, vômito, anorexia, boca seca, constipação, tremores, poliúria.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-4">Outros Antidepressivos (IRSN, NDRI, etc.)</h4>
+                        <div class="medication-card">
+                            <h5>Venlafaxina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Efexor XR, Alenthus XR, Venlift OD, Vensate LP</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibidor da recaptação de serotonina e norepinefrina (IRSN).</p>
+                                <p><strong>Meia-Vida:</strong> Venlafaxina: 3-7 horas. Metabólito ativo (O-desmetilvenlafaxina): 9-13 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão, Transtorno de ansiedade generalizada (TAG), Fobia social, Transtorno do pânico.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão/TAG: 75-225 mg/dia. Fobia social: 75 mg/dia. Transtorno do pânico: 37.5-225 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Cefaleia, astenia, sudorese, náusea, constipação, boca seca, tontura, insônia, nervosismo, sonolência, disfunção sexual. Pode aumentar a pressão arterial.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Desvenlafaxina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Pristiq, Elifore, Imense, Deller, Desve, Zodel</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibidor da recaptação de serotonina e norepinefrina (IRSN), metabólito ativo da venlafaxina.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 11 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Transtorno depressivo maior (TDM).</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Dose usual: 50 mg/dia VO. Dose máxima: 200 mg/dia (alguns estudos sugerem até 400mg, mas benefício adicional questionável).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Náusea, tontura, insônia, hiperidrose, constipação, sonolência, diminuição do apetite, ansiedade, disfunção erétil.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Duloxetina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Cymbalta, Velija, Dual, Cymbi, Deller</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibidor da recaptação neuronal de norepinefrina e serotonina. Baixa ou nenhuma afinidade por receptores dopaminérgicos, histaminérgicos, colinérgicos e adrenérgicos.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 12 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Transtorno depressivo maior, dor neuropática periférica diabética, fibromialgia, transtorno de ansiedade generalizada (TAG), osteoartrite crônica, dor lombar crônica.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Pode iniciar com 30-60 mg/dia. Dose máxima 120 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Boca seca, náusea, dor de cabeça, fadiga, diminuição do apetite, tontura, sonolência, constipação, diarreia, insônia.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Bupropiona</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Wellbutrin XL, Zetron, Bup, Alpes, Bupium</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibidor seletivo da recaptação de noradrenalina e dopamina (NDRI).</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 21 horas (para formulações de liberação prolongada).</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Tratamento da dependência à nicotina, depressão e prevenção de recidivas de episódios depressivos sazonais.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 150-450 mg/dia (geralmente 300 mg/dia para depressão).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Insônia, boca seca, dor de cabeça, agitação, tontura, náusea, constipação. Menor risco de disfunção sexual comparado a ISRS/IRSN. Risco de convulsões em doses elevadas ou em pacientes predispostos.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Mirtazapina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Remeron Soltab, Menelat, Razapina, Mirpax</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonista dos receptores alfa-2 pré-sinápticos centrais, aumentando a neurotransmissão noradrenérgica e serotoninérgica. Antagonista dos receptores 5-HT2 e 5-HT3 e H1 da histamina.</p>
+                                <p><strong>Meia-Vida:</strong> 20-40 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Transtorno depressivo maior.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 15-45 mg/dia, geralmente administrado à noite.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Aumento do peso, aumento de apetite, sonolência, sedação, cefaleia, boca seca.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Trazodona</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Donaren, Lonium XR, Sonin XR</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibidor da recaptação de serotonina e antagonista dos receptores 5-HT2A/2C e alfa-1 adrenérgicos. Ação sedativa devido ao antagonismo H1.</p>
+                                <p><strong>Meia-Vida:</strong> Bifásica, 3-6 horas e 5-9 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Depressão. Usado off-label para insônia.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Depressão: 150-400 mg/dia (até 600mg em casos graves). Insônia: 25-100 mg à noite.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, tontura, boca seca, cefaleia, náuseas, vômitos, hipotensão ortostática. Priapismo é um efeito colateral raro, mas grave.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <h3 class="text-3xl font-semibold mb-6 text-green-800 border-b-2 border-green-300 pb-3">Antipsicóticos</h3>
+                     <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-4">Típicos (1ª Geração)</h4>
+                        <div class="medication-card">
+                            <h5>Haloperidol</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Haldol, Decanoato de Haloperidol, Uni Haloper, Haloper</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonista potente do receptor de dopamina D2. Baixa atividade adrenérgica alfa-1 e nenhuma atividade anti-histamínica ou anticolinérgica significativa.</p>
+                                <p><strong>Meia-Vida:</strong> Oral: 14-26 horas. Decanoato (IM): aproximadamente 3 semanas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia, transtornos psicóticos, mania aguda, agitação psicomotora, soluços incoercíveis, tiques e síndrome de Tourette, náuseas e vômitos.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Variável, 0.5-5 mg, 2-3 vezes/dia. Doses mais altas em surtos. Manutenção: 1-15 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Efeitos extrapiramidais (distonia, acatisia, parkinsonismo), sonolência, tontura, boca seca, visão turva, hipotensão. Discinesia tardia com uso prolongado.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Clorpromazina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Amplictil, Longactil</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Bloqueador de receptores dopaminérgicos D2. Também bloqueia receptores alfa-adrenérgicos, histamínicos H1, serotoninérgicos e muscarínicos.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 30 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Psicoses, esquizofrenia, mania, agitação, soluços intratáveis, náuseas e vômitos.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 25-1000 mg/dia, divididos em doses, dependendo da necessidade do paciente. Iniciar com doses baixas (25-100 mg) e aumentar gradualmente.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sedação, sonolência, hipotensão ortostática, boca seca, constipação, visão turva, efeitos extrapiramidais, ganho de peso, fotossensibilidade.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Levomepromazina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Neozine, Levozine</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonista dos receptores de dopamina D2, com forte ação sedativa devido ao bloqueio H1 e alfa-1 adrenérgico.</p>
+                                <p><strong>Meia-Vida:</strong> 15-30 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Ação neuroléptica e sedativa em pacientes psicóticos, terapia adjuvante para dor, agitação, confusão associada à dor em pacientes terminais.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 25-250 mg/dia, divididos em administrações. Ajustar progressivamente.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, sedação, hipotensão ortostática, boca seca, constipação, visão turva, ganho de peso, distúrbios extrapiramidais (menos intensos que Haloperidol), reações alérgicas.</p>
+                            </div>
+                        </div>
+                         <div class="medication-card">
+                            <h5>Zuclopentixol</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Clopixol (Decanoato para IM de longa ação)</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonista dos receptores de dopamina D1 e D2. Também tem afinidade por receptores alfa-1 adrenérgicos e 5-HT2.</p>
+                                <p><strong>Meia-Vida:</strong> Oral: aprox. 20 horas. Decanoato (IM): aprox. 19 dias.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia e outras psicoses, especialmente com agitação e agressividade. Mania.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Oral: 20-150 mg/dia. Decanoato (IM): 200-400 mg a cada 2-4 semanas.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, boca seca, tontura, efeitos extrapiramidais, acatisia, ganho de peso.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-4">Atípicos (2ª Geração)</h4>
+                        <div class="medication-card">
+                            <h5>Risperidona</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Risperdal, Zargus, Riss, Viverdal, Respidon</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonista seletivo monoaminérgico com alta afinidade pelos receptores serotoninérgicos 5-HT2 e dopaminérgicos D2.</p>
+                                <p><strong>Meia-Vida:</strong> Risperidona: 3 horas. Metabólito ativo (9-hidroxi-risperidona): 24 horas. Total (fração ativa): 20-24 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia, transtorno bipolar (mania), irritabilidade associada ao autismo.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Esquizofrenia: 2-6 mg/dia (pode chegar a 16mg). Mania bipolar: 1-6 mg/dia. Irritabilidade no autismo: 0.5-3 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, tontura, ganho de peso, aumento da prolactina (ginecomastia, galactorreia), efeitos extrapiramidais (em doses mais altas), ansiedade, rinite.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Olanzapina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Zyprexa, Opin, Axonium, Neupine, Zopina</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonismo dos receptores de dopamina (D1-D4) e serotonina (5-HT2A/2C). Afinidade por receptores muscarínicos, histamínicos H1 e alfa-1 adrenérgicos.</p>
+                                <p><strong>Meia-Vida:</strong> 21-54 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia, transtorno bipolar (mania aguda ou misto, manutenção), agitação associada à esquizofrenia ou transtorno bipolar.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Esquizofrenia: 5-20 mg/dia. Mania bipolar: 10-15 mg/dia (monoterapia), 5-20 mg/dia (combinado).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Ganho de peso significativo, sonolência, tontura, boca seca, constipação, aumento do apetite, hipotensão ortostática, acatisia, aumento da glicose e lipídios.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Quetiapina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Seroquel, Quet, Kely, Atip, Queropax</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Antagonista de múltiplos receptores neurotransmissores, incluindo serotonina 5HT1A e 5HT2A, dopamina D1 e D2, histamina H1 e receptores adrenérgicos alfa1 e alfa2.</p>
+                                <p><strong>Meia-Vida:</strong> Quetiapina: aprox. 6 horas. Metabólito ativo (norquetiapina): aprox. 12 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia, transtorno bipolar (episódios maníacos, depressivos e manutenção), adjuvante no transtorno depressivo maior.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Esquizofrenia: 150-750 mg/dia. Mania bipolar: 400-800 mg/dia. Depressão bipolar: 300 mg/dia. Adjuvante depressão: 50-300 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência, tontura, boca seca, ganho de peso, constipação, hipotensão ortostática, aumento de triglicerídeos e colesterol, diminuição de hormônios tireoidianos.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Aripiprazol</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Abilify, Aristab, Apriz, Irazem</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Agonista parcial dos receptores D2 de dopamina e 5-HT1A de serotonina, e antagonista dos receptores 5-HT2A de serotonina.</p>
+                                <p><strong>Meia-Vida:</strong> Aripiprazol: aprox. 75 horas. Metabólito ativo: aprox. 94 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia, transtorno bipolar (mania, misto, manutenção), adjuvante no transtorno depressivo maior, irritabilidade associada ao autismo, síndrome de Tourette.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Esquizofrenia/Mania: 10-30 mg/dia. Adjuvante depressão: 2-15 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Cefaleia, insônia, agitação, ansiedade, náusea, vômito, constipação, acatisia, tontura, sonolência. Menor propensão a ganho de peso e sedação comparado a outros atípicos.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Brexpiprazol</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Rexulti</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Agonista parcial dos receptores D2 e 5-HT1A, e antagonista dos receptores 5-HT2A. Similar ao aripiprazol, mas com diferentes afinidades.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 91 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Esquizofrenia, tratamento adjuvante do transtorno depressivo maior (TDM). Agitação associada à demência do tipo Alzheimer.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Esquizofrenia: 2-4 mg/dia. Adjuvante TDM: 0.5-3 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Ganho de peso, acatisia, cefaleia, sonolência, ansiedade, aumento da prolactina.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <h3 class="text-3xl font-semibold mb-6 text-green-800 border-b-2 border-green-300 pb-3">Estabilizadores de Humor</h3>
+                    <div class="mb-8">
+                         <h4 class="text-2xl font-semibold text-green-700 mb-4">Lítio</h4>
+                        <div class="medication-card">
+                            <h5>Carbonato de Lítio</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Carbolitium, Carlit, Litiocar</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Não completamente elucidado. Envolve alteração do transporte de íons em células nervosas e musculares, e efeitos em neurotransmissores e sistemas de segundo mensageiro.</p>
+                                <p><strong>Meia-Vida:</strong> 18-36 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Transtorno bipolar (mania aguda, manutenção, depressão bipolar), potencialização de antidepressivos.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Ajustadas para atingir nível sérico terapêutico (0.6-1.2 mEq/L). Geralmente 600-1800 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Tremor, poliúria, polidipsia, ganho de peso, náusea, diarreia, acne, hipotireoidismo, alterações renais (com uso prolongado). Estreita janela terapêutica, requer monitoramento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-4">Anticonvulsivantes</h4>
+                        <div class="medication-card">
+                            <h5>Ácido Valproico / Valproato de Sódio</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Depakene, Depakote ER, Torval CR, Valpakine, Epilenil</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Aumenta os níveis de GABA no cérebro, modula canais de sódio e cálcio dependentes de voltagem.</p>
+                                <p><strong>Meia-Vida:</strong> 9-16 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Epilepsia, transtorno bipolar (mania aguda, manutenção), profilaxia da enxaqueca.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Mania: 750-2500 mg/dia. Epilepsia: 10-60 mg/kg/dia. Ajustar conforme níveis séricos e resposta.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Náusea, vômito, sonolência, tontura, tremor, ganho de peso, queda de cabelo, hepatotoxicidade (rara mas grave), pancreatite (rara), trombocitopenia. Teratogênico.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Carbamazepina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Tegretol, Tegretard, Carbital, Unizin</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Bloqueia canais de sódio dependentes de voltagem, estabilizando membranas neuronais hiperexcitadas.</p>
+                                <p><strong>Meia-Vida:</strong> Inicial: 25-65 horas. Crônico (autoindução): 12-17 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Epilepsia, transtorno bipolar (mania aguda, manutenção), neuralgia do trigêmeo.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Epilepsia/Bipolar: Iniciar 200 mg 1-2x/dia, aumentar até 800-1200 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Tontura, sonolência, ataxia, náusea, vômito, visão turva, reações cutâneas (incluindo Stevens-Johnson, especialmente em asiáticos com HLA-B*1502), leucopenia, hiponatremia. Indutor enzimático (muitas interações).</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Oxcarbazepina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Trileptal, Oleptal, Oxcarb, Auram</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Semelhante à carbamazepina (bloqueio de canais de sódio), mas através de seu metabólito ativo MHD.</p>
+                                <p><strong>Meia-Vida:</strong> Oxcarbazepina: 1-5 horas. MHD (metabólito ativo): 7-20 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Epilepsia. Uso off-label para transtorno bipolar e neuralgia.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Epilepsia: Iniciar 300 mg 2x/dia, aumentar até 1200-2400 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Tontura, sonolência, cefaleia, náusea, vômito, diplopia, ataxia, hiponatremia (mais comum que com carbamazepina).</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Lamotrigina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Lamictal, Neural, Lamitor, Lamosyn, Gerolam</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Bloqueia canais de sódio e cálcio dependentes de voltagem, inibe a liberação de glutamato.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 25-30 horas (pode variar com medicações concomitantes).</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Epilepsia, transtorno bipolar (manutenção, prevenção de episódios depressivos).</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> Titulação lenta é crucial devido ao risco de rash cutâneo. Bipolar: alvo de 100-400 mg/dia. Doses variam se usada com valproato (menor) ou carbamazepina (maior).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Tontura, cefaleia, diplopia, ataxia, náusea, sonolência, insônia, rash cutâneo (risco de Stevens-Johnson, especialmente com titulação rápida ou em crianças).</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <h3 class="text-3xl font-semibold mb-6 text-green-800 border-b-2 border-green-300 pb-3">Hipnóticos (Drogas Z)</h3>
+                     <div class="mb-8">
+                        <div class="medication-card">
+                            <h5>Zolpidem</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Stilnox, Lioram, Patz, Zylinox, Zoldem, Nuit, Stilram</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Agonista seletivo do complexo receptor GABA-A, subtipo ômega-1. Facilita a ação inibitória do GABA.</p>
+                                <p><strong>Meia-Vida:</strong> 2-3 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Tratamento de curta duração da insônia.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 5-10 mg ao deitar. Dose menor para idosos e mulheres (5mg).</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Sonolência residual, tontura, cefaleia, amnésia anterógrada, comportamentos complexos do sono (sonambulismo, dirigir dormindo - raro), náusea, diarreia. Risco de dependência e tolerância com uso prolongado.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Zopiclona</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Imovane, Ez Zopiclona, Zopix, Zimovane</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Agonista não-benzodiazepínico do receptor GABA-A, modulando o canal de cloreto.</p>
+                                <p><strong>Meia-Vida:</strong> 5-7 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Tratamento de curta duração da insônia.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 3.75 - 7.5 mg ao deitar.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Gosto amargo ou metálico na boca, boca seca, sonolência, tontura, cefaleia. Risco de dependência e tolerância.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Eszopiclona</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Lunesta, Prysma, Ezolin, Consoni</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Isômero S ativo da zopiclona, agonista do receptor GABA-A.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 6 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Tratamento da insônia (dificuldade em iniciar e/ou manter o sono).</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 1-3 mg ao deitar.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Gosto desagradável, boca seca, sonolência, tontura, cefaleia, nervosismo. Risco de dependência e tolerância.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Zaleplona</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Sonata (Pode não estar amplamente disponível no Brasil)</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Agonista seletivo do complexo receptor GABA-A, subtipo ômega-1, de ação ultracurta.</p>
+                                <p><strong>Meia-Vida:</strong> Aproximadamente 1 hora.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Tratamento de curta duração da insônia de início.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> 5-10 mg ao deitar ou após deitar se houver dificuldade para dormir.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Tontura, sonolência, cefaleia, amnésia, parestesia. Menor risco de sonolência residual devido à meia-vida curta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <h3 class="text-3xl font-semibold mb-6 text-green-800 border-b-2 border-green-300 pb-3">Estimulantes</h3>
+                    <div class="mb-8">
+                        <div class="medication-card">
+                            <h5>Metilfenidato</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Ritalina, Ritalina LA, Concerta, Attenze, Metatop</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Inibição da recaptação de dopamina e norepinefrina, aumentando a concentração desses neurotransmissores na fenda sináptica. Estimulação do SNC.</p>
+                                <p><strong>Meia-Vida:</strong> Liberação imediata: 2-4 horas. Liberação prolongada (LA, Concerta): varia conforme formulação, mas efeito dura mais.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Transtorno do Déficit de Atenção e Hiperatividade (TDAH), Narcolepsia.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> TDAH: Iniciar com 5mg 1-2x/dia (lib. imediata), ajustar até máx. 60mg/dia. Concerta: 18-72 mg 1x/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Insônia, diminuição do apetite, perda de peso, dor abdominal, cefaleia, nervosismo, taquicardia, aumento da pressão arterial. Risco de dependência e abuso.</p>
+                            </div>
+                        </div>
+                        <div class="medication-card">
+                            <h5>Lisdexanfetamina</h5>
+                            <p class="text-md text-gray-500 mb-3"><strong>Nomes Comerciais (Exemplos):</strong> Venvanse, Juneve, Elvanse</p>
+                            <div class="details text-md space-y-1">
+                                <p><strong>Mecanismo de Ação:</strong> Pró-fármaco da dextroanfetamina. A dextroanfetamina promove a liberação de dopamina e norepinefrina dos neurônios pré-sinápticos e bloqueia sua recaptação.</p>
+                                <p><strong>Meia-Vida:</strong> Lisdexanfetamina: <1 hora. Dextroanfetamina (metabólito ativo): 10-13 horas.</p>
+                                <p><strong>Indicações Terapêuticas:</strong> Transtorno do Déficit de Atenção e Hiperatividade (TDAH) em crianças, adolescentes e adultos. Transtorno de compulsão alimentar (TCA) moderado a grave em adultos.</p>
+                                <p><strong>Doses Terapêuticas Usuais:</strong> TDAH/TCA: Iniciar com 30 mg 1x/dia pela manhã, pode aumentar até máx. 70 mg/dia.</p>
+                                <p><strong>Efeitos Colaterais Comuns:</strong> Diminuição do apetite, perda de peso, insônia, boca seca, dor abdominal, cefaleia, irritabilidade, ansiedade, tontura, taquicardia, aumento da pressão arterial. Risco de dependência e abuso.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="ajuda" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-700">Quando e Onde Buscar Ajuda Profissional</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                <p class="text-gray-700 mb-4 text-lg">Reconhecer a necessidade de ajuda é um sinal de força. Se você ou alguém que você conhece está enfrentando dificuldades emocionais que interferem na qualidade de vida, procurar um profissional é o caminho mais indicado.</p>
+                <h4 class="text-xl font-semibold text-green-600 mt-6 mb-3">Quais profissionais procurar?</h4>
+                <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                    <li><strong>Psicólogo:</strong> Oferece psicoterapia (terapia pela fala) para ajudar a entender e lidar com emoções, pensamentos, comportamentos e desafios da vida. Não prescreve medicamentos.</li>
+                    <li><strong>Psiquiatra:</strong> Médico especialista em saúde mental. Pode diagnosticar transtornos mentais, prescrever medicamentos (quando necessário) e oferecer acompanhamento terapêutico.</li>
+                    <li><strong>Terapeuta Ocupacional:</strong> Ajuda pessoas a desenvolverem habilidades para participar de atividades significativas do dia a dia, promovendo autonomia e bem-estar.</li>
+                    <li><strong>Assistente Social:</strong> Pode oferecer suporte em questões sociais que impactam a saúde mental, conectando a recursos comunitários e programas de apoio.</li>
+                </ul>
+                <p class="text-gray-700 mb-4">Muitas vezes, uma abordagem multidisciplinar, envolvendo diferentes profissionais, pode ser benéfica.</p>
+                <div class="text-center mt-8">
+                     <a href="#recursos" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">Veja Canais de Apoio e Recursos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recursos" class="py-16 bg-green-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-700">Canais de Apoio e Recursos Úteis</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Você não está sozinho. Existem diversos canais de ajuda e organizações dedicadas a oferecer suporte emocional e informações sobre saúde mental.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-3 text-green-600">Linhas de Apoio Imediato (Brasil)</h3>
+                    <p class="text-gray-700 mb-2"><strong>CVV - Centro de Valorização da Vida:</strong> <a href="tel:188" class="text-blue-600 hover:underline font-semibold">Ligue 188</a> (ligação gratuita). Apoio emocional e prevenção do suicídio, disponível 24 horas por dia, todos os dias. Totalmente sigiloso.</p>
+                    <p class="text-gray-700"><strong>SAMU:</strong> <a href="tel:192" class="text-blue-600 hover:underline font-semibold">Ligue 192</a>. Para emergências médicas, incluindo crises psiquiátricas graves que necessitem de intervenção imediata.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-3 text-green-600">Serviços Públicos e Onde Encontrar Profissionais</h3>
+                     <p class="text-gray-700 mb-2"><strong>CAPS (Centros de Atenção Psicossocial):</strong> Unidades do SUS (Sistema Único de Saúde) que oferecem atendimento especializado e gratuito em saúde mental, incluindo acompanhamento com psicólogos, psiquiatras e outros profissionais. Procure o CAPS mais próximo em sua cidade.</p>
+                     <p class="text-gray-700 mb-2"><strong>Unidades Básicas de Saúde (Postos de Saúde):</strong> Podem oferecer o primeiro acolhimento e encaminhamento para serviços especializados.</p>
+                     <p class="text-gray-700"><strong>Planos de Saúde:</strong> Verifique a rede credenciada para psicólogos e psiquiatras.</p>
+                     <p class="text-gray-700 mt-2"><strong>Clínicas Sociais e Universidades:</strong> Muitas universidades com cursos de psicologia oferecem atendimento psicológico à comunidade a preços acessíveis ou gratuitos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-700">Entre em Contato</h2>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                <p class="text-gray-700 mb-6 text-center">Tem alguma dúvida, sugestão ou gostaria de compartilhar sua história (de forma anônima, se preferir)? Use o formulário abaixo. <br><strong class="text-red-600">Importante: Este formulário não é para emergências ou aconselhamento individualizado. Para isso, procure os canais de apoio listados na seção "Recursos".</strong></p>
+                <form action="#" method="POST"> 
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">Nome</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">Mensagem</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">Enviar Mensagem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Mente em Foco</h3>
+                    <p class="text-sm">Seu espaço seguro para informação e apoio sobre saúde mental. Lembre-se, você não está sozinho.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Links Rápidos</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#o-que-e" class="hover:text-green-400 transition duration-300">O que é Saúde Mental?</a></li>
+                        <li><a href="#autocuidado" class="hover:text-green-400 transition duration-300">Autocuidado</a></li>
+                         <li><a href="#medicamentos" class="hover:text-green-400 transition duration-300">Medicamentos</a></li>
+                        <li><a href="#ajuda" class="hover:text-green-400 transition duration-300">Buscar Ajuda</a></li>
+                        <li><a href="#recursos" class="hover:text-green-400 transition duration-300">Recursos de Apoio</a></li>
+                        <li><a href="politica-privacidade.html" class="hover:text-green-400 transition duration-300">Política de Privacidade</a></li> 
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Conecte-se</h3>
+                    <p class="text-sm">contato@menteemfoco.com.br</p> 
+                    <p class="text-sm mt-4 disclaimer-box !bg-gray-700 !border-amber-600 !text-gray-300"><strong>AVISO IMPORTANTE:</strong> As informações neste site são apenas para fins educacionais e não substituem o aconselhamento, diagnóstico ou tratamento médico profissional. Sempre procure o conselho de seu médico ou outro profissional de saúde qualificado com qualquer dúvida que possa ter sobre uma condição médica.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>&copy; <span id="currentYear"></span> Mente em Foco. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('#nav-links a[href^="#"], #mobile-menu a[href^="#"]'); // Links internos
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fecha o menu móvel ao clicar em um link interno
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                mobileMenu.classList.add('hidden'); // Esconde o menu
+                
+                // Adiciona rolagem suave para links internos
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault(); // Previne o comportamento padrão do link
+                    // Remove destaque de todos os links do menu principal
+                    document.querySelectorAll('#nav-links a').forEach(navLink => navLink.classList.remove('text-green-700', 'font-semibold', 'border-b-2', 'border-green-700'));
+                    // Adiciona destaque ao link clicado no menu principal
+                    if(link.closest('#nav-links')){ // Verifica se o link está no menu principal
+                        link.classList.add('text-green-700', 'font-semibold', 'border-b-2', 'border-green-700');
+                    }
+
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Destaca o link ativo no menu principal ao carregar a página com hash
+        function highlightActiveLinkOnLoad() {
+            const hash = window.location.hash;
+            if (hash) {
+                document.querySelectorAll('#nav-links a').forEach(navLink => navLink.classList.remove('text-green-700', 'font-semibold', 'border-b-2', 'border-green-700'));
+                const activeLink = document.querySelector('#nav-links a[href="' + hash + '"]');
+                if (activeLink) {
+                    activeLink.classList.add('text-green-700', 'font-semibold', 'border-b-2', 'border-green-700');
+                }
+            } else {
+                 // Se não houver hash (página inicial), destaca o primeiro link como padrão ou nenhum.
+                 // Aqui, optei por não destacar nenhum por padrão na carga inicial sem hash.
+            }
+        }
+        window.addEventListener('DOMContentLoaded', highlightActiveLinkOnLoad);
+        window.addEventListener('hashchange', highlightActiveLinkOnLoad);
+
+
+    </script>
+
+</body>
+</html>

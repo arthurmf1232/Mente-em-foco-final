@@ -1,1 +1,0 @@
-# Mente-em-foco-final
